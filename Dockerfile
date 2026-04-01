@@ -50,7 +50,7 @@ RUN \
 RUN apt-get install -y xrdp
 
 # VNC（应用程序）
-RUN apt-get install -y tigervnc-standalone-server tigervnc-common && \
+RUN apt-get install -y tigervnc-standalone-server tigervnc-common
 
 # 添加输入法（输入法适用于VNC或者RDP连接时）
 RUN \
