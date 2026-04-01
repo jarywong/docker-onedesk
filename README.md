@@ -48,6 +48,10 @@ docker compose up -d
 ##### ①输入法
 浏览器访问时，可以直接使用客户端的输入法，VNC/RDP访问时，输入法切换可用快捷键Ctrl+Space进行切换。
 
+#### 2.1.5 更新
+```bash
+docker compose up -d --build
+```
 
 ## Star History
 
