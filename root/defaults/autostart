@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# default file copies first run
+if [ ! -f $HOME/.config/tint2/tint2rc ]; then
+    mkdir -p $HOME/.config/tint2
+    cp /defaults/tint2rc $HOME/.config/tint2/tint2rc
+fi
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+rm -rf /tmp/.X*-lock
+rm -rf /tmp/.X11-unix/X*
+
+# 启动 VNC（推荐用 :1 避免冲突）
+su abc -c "vncserver :1 -localhost no"
+
+# Start xrdp
+sudo xrdp-sesman &
+sudo xrdp &
+
+# Run weixin
+tint2 &
+wechat

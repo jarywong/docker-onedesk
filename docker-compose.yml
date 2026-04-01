@@ -1,0 +1,33 @@
+---
+services:
+  onedesk:
+    build:
+      context: .
+    image: onedesk:latest
+    container_name: onedesk
+    volumes:
+      - /etc/localtime:/etc/localtime:ro       # timezone
+      - /etc/timezone:/etc/timezone:ro         # timezone
+      - ./config:/config
+    devices:
+      - /dev/dri:/dev/dri                      # optional, for hardware acceleration
+    network_mode: "bridge"                     # Synchronizing chat history may require host mode.
+    ports:
+      - "${HTTP_PORT:-3000}:3000"              # http port (need proxied)
+      - "${HTTPS_PORT:-3001}:3001"             # https port
+      - "${VNC_PORT:-5900}:5900"               # vnc port
+      - "${RDP_PORT:-3389}:3389"               # rdp port
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID:-1000}                     # set user id according to your system
+      - PGID=${PGID:-1000}                     # set group id according to your system
+      - CUSTOM_USER=${CUSTOM_USER:-abc}        # recommended to set a custom user name
+      - PASSWORD=${PASSWORD:-}                 # recommended to set a password for selkies web ui
+      - VNC_PASSWORD=${VNC_PASSWORD:-}         # recommended to set a password for VNC
+      #- CUSTOM_PORT=${CUSTOM_PORT:-3000}             # set port to your http service (need proxied) for host mode
+      #- CUSTOM_HTTPS_PORT=${CUSTOM_HTTPS_PORT:-3001} # set port to your https service for host mode
+    shm_size: "${SHM_SIZE:-1gb}"               # recommended, will improve performance
+    #cap_add:
+    #  - SYS_ADMIN
+    #security_opt:
+    #  - seccomp=unconfined
