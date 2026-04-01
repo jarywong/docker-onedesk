@@ -51,4 +51,4 @@ docker compose up -d
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jarywong/onedesk&type=Date)](https://www.star-history.com/#jarywong/onedesk&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=jarywong/docker-onedesk&type=Date)](https://www.star-history.com/#jarywong/docker-onedesk&Date)
